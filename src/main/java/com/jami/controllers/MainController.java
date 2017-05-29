@@ -1,5 +1,6 @@
 package com.jami.controllers;
 
+import com.jami.Service;
 import com.jami.repositories.UserRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,19 +13,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/main")
 public class MainController {
 
-    private UserRepository userRepository;
+    private Service service;
 
-    public MainController(UserRepository userRepository){
-        this.userRepository = userRepository;
+    public MainController(Service service){
+        this.service = service;
     }
 
     @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello(){
+
+        service.test();
         return "Hello";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public void addUser(){
-        userRepository.addUser();
     }
 }
