@@ -8,26 +8,20 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Created by Mis on 2017-05-29.
+ * Created by Mis on 2017-05-30.
  */
 @Component
-public class Service {
+public class Service2 {
+
 
     @Autowired
     UserRepository userRepository;
 
-    @Autowired
-    Service2 service2;
+    String a;
 
-
-    @Transactional(propagation=Propagation.REQUIRED)
-    public void test() {
-        try {
-            service2.test2();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        userRepository.save(User.createUser(2));
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void test2() {
+        userRepository.save(User.createUser(1));
+        a.toCharArray();
     }
-
 }
