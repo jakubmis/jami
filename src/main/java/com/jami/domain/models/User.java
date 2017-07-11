@@ -1,6 +1,6 @@
 package com.jami.domain.models;
 
-import com.jami.persistence.entity.DbUser;
+import com.jami.persistence.sql.entities.DbUser;
 import lombok.Builder;
 import lombok.Data;
 

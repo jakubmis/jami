@@ -1,4 +1,4 @@
-package com.jami.persistence.entity;
+package com.jami.persistence.sql.entities;
 
 import com.jami.domain.models.Login;
 import com.jami.domain.models.Password;
@@ -34,5 +34,15 @@ public class DbUser {
                 .login(new Login(dbUser.getLogin()))
                 .password(new Password(dbUser.getPassword()))
                 .build();
+    }
+
+    @Override
+    public String toString() {
+        return "DbUser{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", creationDate=" + creationDate +
+                '}';
     }
 }

@@ -1,12 +1,12 @@
 package com.jami.web.controllers;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.jami.domain.domains.AuthenticationDomain;
 import com.jami.domain.models.Login;
 import com.jami.domain.models.Password;
 import com.jami.domain.models.User;
 import com.jami.utils.Response;
 import com.jami.web.commands.RegisterCommand;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -37,15 +37,20 @@ public class UserController {
         return authenticationDomain.registerUser(user);
     }
 
-    @GetMapping(value = "show")
-    private Response<String> show(HttpServletResponse response){
-        List<String> collect = authenticationDomain.getUsers()
+    @GetMapping(value = "list")
+    private Response<String> list(HttpServletResponse response){
+        List<JSONObject> collect = authenticationDomain.getUsers()
                 .getData()
                 .stream()
-                .map(User::getLogin)
-                .map(Login::getValue)
+                .map(this::toWebUser)
                 .collect(Collectors.toList());
         return Response.create(collect, OK);
+    }
+
+    private JSONObject toWebUser(User user){
+        JSONObject object = new JSONObject();
+        object.put("login", user.getLogin());
+        return object;
     }
 
 }

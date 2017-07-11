@@ -1,6 +1,6 @@
-package com.jami.persistence.repositories;
+package com.jami.persistence.spring.repositories;
 
-import com.jami.persistence.entity.DbUser;
+import com.jami.persistence.sql.entities.DbUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
